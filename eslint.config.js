@@ -79,10 +79,15 @@ export default tseslint.config(
         "error",
         {
           "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
-          "pathGroupsExcludedImportTypes": ["builtin"],
-          "newlines-between": "always"
-        }
+          "newlines-between": "always",
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
+        },
       ],
+      "no-duplicate-imports": "error",
+      "import/prefer-default-export": "off",
 
       "padding-line-between-statements": [
         "error",
@@ -90,7 +95,7 @@ export default tseslint.config(
           "blankLine": "always",
           "prev": "*",
           "next": "return"
-        }
+        },
       ],
       'prefer-const': 'error',
     },

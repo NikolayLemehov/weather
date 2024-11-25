@@ -1,37 +1,51 @@
-import { useState } from "react";
-
-import viteLogo from "/vite.svg";
-
-import reactLogo from "./assets/react.svg";
+import { Button } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import "./App.css";
+import { envKey } from "./common/constants.ts";
+import { WeatherCard } from "./components";
+import { WeatherData } from "./components/WeatherCard/types.ts";
+import { useIsMounted } from "./hooks";
 
+const apiKey = envKey.VITE_WEATHER_API_KEY;
+console.log(apiKey);
 const App = () => {
-  const [count, setCount] = useState(0);
+  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+  const isMounted = useIsMounted();
+
+  const fetchWeatherData = async () => {
+    const response = await fetch(
+      `http://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=${envKey.VITE_WEATHER_API_KEY}`
+    );
+    const data: WeatherData = await response.json();
+    setWeatherData(data);
+    localStorage.setItem("weatherData", JSON.stringify(data));
+  };
+
+  const loadWeatherData = () => {
+    const data = localStorage.getItem("weatherData");
+    if (data) {
+      setWeatherData(JSON.parse(data));
+    } else {
+      console.warn("No data found in localStorage");
+    }
+  };
+  useEffect(() => {
+    if (isMounted.current) {
+      loadWeatherData();
+    }
+  }, [isMounted]);
+  console.log(weatherData);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((prev) => prev + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <Button onClick={fetchWeatherData}>Fetch Weather Data</Button>
+      <Button onClick={loadWeatherData} style={{ marginLeft: "10px" }}>
+        Load Weather Data
+      </Button>
+
+      {weatherData && <WeatherCard data={weatherData} />}
+    </div>
   );
 };
 
