@@ -3,8 +3,7 @@ import dayjs from "dayjs";
 
 import { kelvinToCelsius } from "../../utils";
 
-import { CityText, DateText } from "./components";
-import { TemperatureTypeToggle } from "./components/TemperatureTypeToggle.tsx";
+import { CityText, DateText, TemperatureChart, TemperatureTypeToggle, WeatherParam } from "./components";
 import { WeatherData } from "./types.ts";
 
 type Props = {
@@ -12,11 +11,13 @@ type Props = {
 };
 
 export const WeatherCard = ({ data }: Props) => {
+  console.log(data.list[0]?.wind.speed, { data });
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardContent sx={{ p: "10px 15px", "&:last-child": { pb: "10px" }, backgroundColor: "warm.bg" }}>
         <Stack>
-          <Stack direction="row">
+          <Stack direction="row" justifyContent="space-between">
             <Stack>
               <CityText>
                 {data.city.name}, {data.city.country}
@@ -36,6 +37,8 @@ export const WeatherCard = ({ data }: Props) => {
             </Stack>
           </Stack>
 
+          <TemperatureChart />
+
           <Stack direction="row" justifyContent="space-between">
             <Stack>
               <Stack direction="row" gap={1} alignItems="flex-start">
@@ -48,25 +51,10 @@ export const WeatherCard = ({ data }: Props) => {
                 Feels like: {kelvinToCelsius(data.list[0]?.main.feels_like ?? 0)} °C
               </Typography>
             </Stack>
-            <Stack>
-              <Typography fontSize="12px" lineHeight="18px" fontWeight={400} color="common.black">
-                Wind:{" "}
-                <Typography variant="body1" display="inline" color="warm.graph">
-                  {kelvinToCelsius(data.list[0]?.wind.speed ?? 0)} m/s
-                </Typography>
-              </Typography>
-              <Typography fontSize="12px" lineHeight="18px" fontWeight={400} color="common.black">
-                Humidity:{" "}
-                <Typography variant="body1" display="inline" color="warm.graph">
-                  {kelvinToCelsius(data.list[0]?.main.humidity ?? 0)} %
-                </Typography>
-              </Typography>
-              <Typography fontSize="12px" lineHeight="18px" fontWeight={400} color="common.black">
-                Pressure:{" "}
-                <Typography variant="body1" display="inline" color="warm.graph">
-                  {kelvinToCelsius(data.list[0]?.main.pressure ?? 0)} Pa
-                </Typography>
-              </Typography>
+            <Stack alignItems="flex-end">
+              <WeatherParam name="Wind" value={data.list[0]?.wind.speed} />
+              <WeatherParam name="Humidity" value={data.list[0]?.main.humidity} />
+              <WeatherParam name="Pressure" value={data.list[0]?.main.pressure} />
             </Stack>
           </Stack>
         </Stack>
