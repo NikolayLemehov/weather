@@ -1,14 +1,11 @@
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
+import { WeatherData } from "@common/types.ts";
+import { envKey } from "@common/constants.ts";
 
-import "./App.css";
-import { envKey } from "./common/constants.ts";
 import { WeatherCard } from "./components";
-import { WeatherData } from "./components/WeatherCard/types.ts";
 import { useIsMounted } from "./hooks";
 
-const apiKey = envKey.VITE_WEATHER_API_KEY;
-console.log(apiKey);
 const App = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const isMounted = useIsMounted();
@@ -35,7 +32,6 @@ const App = () => {
       loadWeatherData();
     }
   }, [isMounted]);
-  console.log(weatherData);
 
   return (
     <div>

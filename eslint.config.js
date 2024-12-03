@@ -67,6 +67,22 @@ export default tseslint.config(
       'react/jsx-curly-brace-presence': ['warn', { props: 'never', children: 'never' }],
       'react/function-component-definition': ['warn', { namedComponents: 'arrow-function' }],
       'react/self-closing-comp': ['error', { component: true, html: true }],
+      "import/order": [
+        "error",
+        {
+          "groups": ["builtin", "external", "sibling", "internal", "parent", "index"],
+          "pathGroupsExcludedImportTypes": ["builtin"],
+          "newlines-between": "always",
+          // alphabetize: {
+          //   order: 'asc',
+          //   caseInsensitive: true,
+          // },
+        },
+      ],
+      "no-use-before-define": "off",
+      "no-duplicate-imports": "error",
+      "import/prefer-default-export": "off",
+      "no-shadow": "off",
 
       "@typescript-eslint/no-shadow": ["error"],
       "@typescript-eslint/no-use-before-define": ["error"],
@@ -74,20 +90,6 @@ export default tseslint.config(
         "varsIgnorePattern": "^_",
         "argsIgnorePattern": "^_"
       }],
-
-      "import/order": [
-        "error",
-        {
-          "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
-          "newlines-between": "always",
-          alphabetize: {
-            order: 'asc',
-            caseInsensitive: true,
-          },
-        },
-      ],
-      "no-duplicate-imports": "error",
-      "import/prefer-default-export": "off",
 
       "padding-line-between-statements": [
         "error",

@@ -13,7 +13,7 @@ export const palette = {
     700: "#464646",
   },
   warm: { bg: "#fffaf1", graph: "#ffa25b" },
-  cool: { bg: "#f1f2ff", graph: "#5b8cff" },
+  cold: { bg: "#f1f2ff", graph: "#5b8cff" },
   transparent: {
     black: "#00000029",
   },
@@ -22,12 +22,12 @@ export const palette = {
 declare module "@mui/material/styles/createPalette" {
   interface Palette {
     warm: { bg: string; graph: string };
-    cool: { bg: string; graph: string };
+    cold: { bg: string; graph: string };
     transparent: { black: string };
   }
   interface PaletteOptions {
     warm?: { bg: string; graph: string };
-    cool?: { bg: string; graph: string };
+    cold?: { bg: string; graph: string };
     transparent?: { black: string };
   }
 }

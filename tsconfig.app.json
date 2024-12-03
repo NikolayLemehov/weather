@@ -28,7 +28,9 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "allowUnusedLabels": false,
-    "allowUnreachableCode": false
+    "allowUnreachableCode": false,
+    "baseUrl": ".",
+    "paths": { "@/*": ["src/*"], "@common/*": ["src/common/*"], "@store/*": ["src/store/*"] }
   },
   "include": ["src"],
   "exclude": ["node_modules"]
