@@ -1,9 +1,9 @@
-import { Button } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
 import { WeatherData } from "@common/types.ts";
 import { envKey } from "@common/constants.ts";
 
-import { WeatherCard } from "./components";
+import { SearchCitySelect, WeatherCard } from "./components";
 import { useIsMounted } from "./hooks";
 
 const App = () => {
@@ -34,14 +34,21 @@ const App = () => {
   }, [isMounted]);
 
   return (
-    <div>
-      <Button onClick={fetchWeatherData}>Fetch Weather Data</Button>
-      <Button onClick={loadWeatherData} style={{ marginLeft: "10px" }}>
-        Load Weather Data
-      </Button>
+    <Stack gap={3}>
+      <Stack direction="row" gap={2}>
+        <Button onClick={fetchWeatherData}>Fetch Weather Data</Button>
+        <Button onClick={loadWeatherData} style={{ marginLeft: "10px" }}>
+          Load Weather Data
+        </Button>
+      </Stack>
+
+      <Stack direction="row" gap={2}>
+        <SearchCitySelect />
+        <Button>Add city</Button>
+      </Stack>
 
       {weatherData && <WeatherCard data={weatherData} />}
-    </div>
+    </Stack>
   );
 };
 
