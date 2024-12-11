@@ -1,7 +1,6 @@
 import { styled, Typography, TypographyProps } from "@mui/material";
 import { useSelector } from "react-redux";
-
-import { selectIsWarmWeather } from "@/components/WeatherCard/weather.selectors.ts";
+import { selectIsWarmWeather } from "@store/slices/cities.selectors.ts";
 
 const ColoredValue = styled(Typography, {
   shouldForwardProp: (prop) => prop !== "colorScheme",
@@ -13,9 +12,10 @@ type Props = {
   name: string;
   unit?: string;
   value?: number;
+  cityKey: string;
 };
-export const WeatherParam = ({ name, value, unit }: Props) => {
-  const isWarmWeather = useSelector(selectIsWarmWeather);
+export const WeatherParam = ({ name, value, unit, cityKey }: Props) => {
+  const isWarmWeather = useSelector(selectIsWarmWeather(cityKey));
 
   return (
     <Typography fontSize="12px" lineHeight="18px" fontWeight={400} color="common.black">

@@ -1,9 +1,8 @@
 import { Button as ButtonMui, ButtonProps, Divider, Stack, styled } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "@common/hooks";
-
-import { toggleTemperatureType } from "../weather.slice.ts";
-import { selectTemperatureType } from "../weather.selectors.ts";
+import { selectCityKeysMap } from "@store/slices/cities.selectors.ts";
+import { toggleTemperatureType } from "@store/slices/cities.slice.ts";
 
 const Button = styled(ButtonMui)(({ theme }) => ({
   minWidth: "auto",
@@ -17,10 +16,14 @@ const Button = styled(ButtonMui)(({ theme }) => ({
   boxShadow: "none",
 }));
 
-export const TemperatureTypeToggle = ({ ...props }: ButtonProps) => {
+type Props = ButtonProps & {
+  cityKey: string;
+};
+
+export const TemperatureTypeToggle = ({ cityKey, ...props }: Props) => {
   const dispatch = useAppDispatch();
-  const isCelsius = useSelector(selectTemperatureType) === "celsius";
-  const handleClick = () => dispatch(toggleTemperatureType());
+  const isCelsius = useSelector(selectCityKeysMap)[cityKey]?.temperatureType === "celsius";
+  const handleClick = () => dispatch(toggleTemperatureType(cityKey));
 
   return (
     <Button onClick={handleClick} {...props}>

@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
 import { useMemo } from "react";
-import { WeatherData } from "@common/types.ts";
+import { WeatherDataApiType } from "@common/types.ts";
 
-type WeatherItem = WeatherData["list"][number];
+type WeatherItem = WeatherDataApiType["list"][number];
 type Grouped = Record<string, WeatherItem[]>;
 type GroupedData = {
   data: Grouped;
@@ -14,7 +14,7 @@ type ReturnItem = {
 };
 const transformDate = (s: string) => dayjs(s).format("DD.MM");
 
-export const useTemperatureList = (weatherData: WeatherData | null): ReturnItem[] =>
+export const useTemperatureList = (weatherData?: WeatherDataApiType | null): ReturnItem[] =>
   useMemo(() => {
     const groupedData = weatherData?.list.reduce(
       (acc, it) => {

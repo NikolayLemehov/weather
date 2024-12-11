@@ -62,7 +62,7 @@ type City = {
   sunset: number;
 };
 
-export type WeatherData = {
+export type WeatherDataApiType = {
   cod: string;
   message: number;
   cnt: number;
