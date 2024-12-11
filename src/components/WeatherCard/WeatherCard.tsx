@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
-import { Card, CardActions, Stack, Typography } from "@mui/material";
+import { Box, Card, Stack, Typography } from "@mui/material";
 import { WeatherDataApiType } from "@common/types.ts";
 import { GeoCityType } from "@store/slices/cities.slice.ts";
 import { selectCityMapItem, selectWeatherByCurrentType } from "@store/slices/cities.selectors.ts";
@@ -32,14 +32,12 @@ export const WeatherCard = ({ data, geoCity }: Props) => {
   const feelTemperatureByCurrentType = currentWeather.feelTemperatureInKelvin;
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ position: "relative", maxWidth: 345 }}>
       <WeatherCardContent colorScheme={isWarmWeather ? "warm" : "cold"}>
         <Stack>
-          <Stack direction="row" justifyContent="space-between">
+          <Stack direction="row" justifyContent="space-between" sx={{ pr: 1 }}>
             <Stack>
-              <CityText>
-                {city.geo.name}, {city.geo.country}
-              </CityText>
+              <CityText>{[city.geo.name, city.geo.country].filter(Boolean).join(", ")}</CityText>
               <DateText>{dayjs(data.list[0]?.dt_txt).format("ddd, DD MMMM, HH:mm")}</DateText>
             </Stack>
 
@@ -77,9 +75,9 @@ export const WeatherCard = ({ data, geoCity }: Props) => {
           </Stack>
         </Stack>
       </WeatherCardContent>
-      <CardActions>
+      <Box sx={{ position: "absolute", top: 0, right: 0 }}>
         <DeleteCardBtn cityKey={geoCity.cityKey} />
-      </CardActions>
+      </Box>
     </Card>
   );
 };

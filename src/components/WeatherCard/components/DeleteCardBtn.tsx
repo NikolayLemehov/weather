@@ -12,7 +12,7 @@ export const DeleteCardBtn = ({ cityKey }: Props) => {
 
   return (
     <IconButton aria-label="delete" size="small" onClick={handleDeleteCard}>
-      <ClearIcon />
+      <ClearIcon fontSize="small" sx={{ width: "12px", height: "12px" }} />
     </IconButton>
   );
 };
