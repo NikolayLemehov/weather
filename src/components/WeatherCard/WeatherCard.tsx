@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { Card, CardActions, Stack, Typography } from "@mui/material";
 import { WeatherDataApiType } from "@common/types.ts";
 import { GeoCityType } from "@store/slices/cities.slice.ts";
-import { selectWeatherByCurrentType } from "@store/slices/cities.selectors.ts";
+import { selectCityMapItem, selectWeatherByCurrentType } from "@store/slices/cities.selectors.ts";
 
 import {
   CityText,
@@ -22,7 +22,9 @@ type Props = {
 
 export const WeatherCard = ({ data, geoCity }: Props) => {
   const currentWeather = useSelector(selectWeatherByCurrentType(geoCity.cityKey));
+  const city = useSelector(selectCityMapItem(geoCity.cityKey));
   if (!currentWeather) return "Not enough Weather data";
+  if (!city) return "Not enough city data";
 
   const temperatureByCurrentType = currentWeather.temperatureInKelvin;
   const isWarmWeather = currentWeather.isWarm;
@@ -36,7 +38,7 @@ export const WeatherCard = ({ data, geoCity }: Props) => {
           <Stack direction="row" justifyContent="space-between">
             <Stack>
               <CityText>
-                {data.city.name}, {data.city.country}
+                {city.geo.name}, {city.geo.country}
               </CityText>
               <DateText>{dayjs(data.list[0]?.dt_txt).format("ddd, DD MMMM, HH:mm")}</DateText>
             </Stack>

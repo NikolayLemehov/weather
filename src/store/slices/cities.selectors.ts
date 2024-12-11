@@ -8,17 +8,23 @@ export const selectCityKeysMap = (state: RootState) => state.cities.citiesMap;
 export const selectCityKeys = (state: RootState) => state.cities.cityKeys;
 
 // reselect
-export const selectIsWarmWeather = (ciyKey: string) =>
+export const selectCityMapItem = (ciyKey: string) =>
   createSelector([selectCityKeysMap], (cityKeysMap) => {
-    const weather = cityKeysMap[ciyKey]?.weather;
+    const city = cityKeysMap[ciyKey];
+    if (!city) return null;
+
+    return city;
+  });
+export const selectIsWarmWeather = (ciyKey: string) =>
+  createSelector([selectCityMapItem(ciyKey)], (city) => {
+    const weather = city?.weather;
     if (!weather) return null;
 
     return weather.isWarm;
   });
 export const selectWeatherByCurrentType = (ciyKey: string) =>
-  createSelector([selectCityKeysMap], (cityKeysMap) => {
-    const city = cityKeysMap[ciyKey];
-    const weather = cityKeysMap[ciyKey]?.weather;
+  createSelector([selectCityMapItem(ciyKey)], (city) => {
+    const weather = city?.weather;
     if (!city || !weather) return null;
 
     const celsiusWeather: WeatherType = {
