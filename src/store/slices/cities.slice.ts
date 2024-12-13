@@ -26,12 +26,14 @@ type CitiesState = {
   citiesMap: Record<CityId, GeoCityType>;
   cityKeys: CityId[];
   selectedCity: GeoCityApiType | null;
+  something: string;
 };
 
 const initialState: CitiesState = {
   citiesMap: {},
   cityKeys: [],
   selectedCity: null,
+  something: "",
 };
 
 const citiesSlice = createSlice({
