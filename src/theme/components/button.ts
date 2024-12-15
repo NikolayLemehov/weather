@@ -11,12 +11,13 @@ export const setButtonComponent = (theme: Theme) => {
     styleOverrides: {
       root: {
         minWidth: "112px",
+        padding: "10px 20px",
         fontFamily: "Jost, Arial, sans-serif",
         fontSize: "14px",
         lineHeight: "20px",
         fontWeight: 400,
         color: palette.primary.contrastText,
-        padding: "10px 20px",
+        textTransform: "initial",
       },
     },
   };

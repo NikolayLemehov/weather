@@ -1,7 +1,7 @@
 import { SyntheticEvent, useState } from "react";
 import { GeoCityApiType, useSearchCitiesQuery } from "@store/services/openWeatherApi";
 import { Autocomplete } from "@mui/material";
-import { setSelectedCity } from "@store/slices/cities.slice.ts";
+import { setSelectedCity } from "@store/slices/cities/cities.slice.ts";
 import { useAppDispatch } from "@common/hooks";
 
 import { DebounceTextField } from "./components";

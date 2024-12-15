@@ -1,6 +1,6 @@
 import { styled, Typography, TypographyProps } from "@mui/material";
 import { useSelector } from "react-redux";
-import { selectIsWarmWeather } from "@store/slices/cities.selectors.ts";
+import { selectIsWarmWeather } from "@store/slices/cities/cities.selectors.ts";
 
 const ColoredValue = styled(Typography, {
   shouldForwardProp: (prop) => prop !== "colorScheme",

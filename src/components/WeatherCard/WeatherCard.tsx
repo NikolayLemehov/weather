@@ -2,8 +2,9 @@ import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import { Box, Card, Stack, Typography } from "@mui/material";
 import { WeatherDataApiType } from "@common/types.ts";
-import { GeoCityType } from "@store/slices/cities.slice.ts";
-import { selectCityMapItem, selectWeatherByCurrentType } from "@store/slices/cities.selectors.ts";
+import { GeoCityType } from "@store/slices/cities/cities.slice.ts";
+import { selectCityMapItem, selectWeatherByCurrentType } from "@store/slices/cities/cities.selectors.ts";
+import { useTranslation } from "react-i18next";
 
 import {
   CityText,
@@ -21,6 +22,7 @@ type Props = {
 };
 
 export const WeatherCard = ({ data, geoCity }: Props) => {
+  const { t } = useTranslation("home");
   const currentWeather = useSelector(selectWeatherByCurrentType(geoCity.cityKey));
   const city = useSelector(selectCityMapItem(geoCity.cityKey));
   if (!currentWeather) return "Not enough Weather data";
@@ -48,7 +50,7 @@ export const WeatherCard = ({ data, geoCity }: Props) => {
                 width={40}
               />
               <Typography fontSize="13px" lineHeight="19px" fontWeight={400} color="grey.100">
-                {data.list[0]?.weather[0]?.main}
+                {data.list[0]?.weather[0]?.description}
               </Typography>
             </Stack>
           </Stack>
@@ -64,13 +66,23 @@ export const WeatherCard = ({ data, geoCity }: Props) => {
                 <TemperatureTypeToggle cityKey={geoCity.cityKey} />
               </Stack>
               <Typography fontSize="13px" lineHeight="19px" fontWeight={400} color="grey.100">
-                Feels like: {feelTemperatureByCurrentType} °C
+                {t("feelsLike")}: {feelTemperatureByCurrentType} °C
               </Typography>
             </Stack>
             <Stack alignItems="flex-end">
-              <WeatherParam name="Wind" unit="m/s" value={data.list[0]?.wind.speed} cityKey={geoCity.cityKey} />
-              <WeatherParam name="Humidity" unit="%" value={data.list[0]?.main.humidity} cityKey={geoCity.cityKey} />
-              <WeatherParam name="Pressure" unit="Pa" value={data.list[0]?.main.pressure} cityKey={geoCity.cityKey} />
+              <WeatherParam name={t("wind")} unit="m/s" value={data.list[0]?.wind.speed} cityKey={geoCity.cityKey} />
+              <WeatherParam
+                name={t("humidity")}
+                unit="%"
+                value={data.list[0]?.main.humidity}
+                cityKey={geoCity.cityKey}
+              />
+              <WeatherParam
+                name={t("pressure")}
+                unit="Pa"
+                value={data.list[0]?.main.pressure}
+                cityKey={geoCity.cityKey}
+              />
             </Stack>
           </Stack>
         </Stack>

@@ -1,7 +1,7 @@
 import { Box, useTheme } from "@mui/material";
 import { Area, AreaChart, LabelList, XAxis, YAxis } from "recharts";
 import { useSelector } from "react-redux";
-import { selectIsWarmWeather } from "@store/slices/cities.selectors.ts";
+import { selectIsWarmWeather } from "@store/slices/cities/cities.selectors.ts";
 
 type ChartDataItem = {
   date: string;

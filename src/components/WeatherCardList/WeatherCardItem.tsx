@@ -1,7 +1,8 @@
 import { useGeoWeatherQuery } from "@store/services/openWeatherApi.ts";
-import { GeoCityType, setWeather } from "@store/slices/cities.slice.ts";
+import { GeoCityType, setWeather } from "@store/slices/cities/cities.slice.ts";
 import { useEffect } from "react";
 import { useAppDispatch } from "@common/hooks";
+import { useTranslation } from "react-i18next";
 
 import { useTemperatureList } from "./hooks";
 
@@ -11,8 +12,9 @@ type Props = {
   geoCity: GeoCityType;
 };
 export const WeatherCardItem = ({ geoCity }: Props) => {
+  const { i18n } = useTranslation();
   const dispatch = useAppDispatch();
-  const { data, isLoading } = useGeoWeatherQuery({ lat: geoCity.geo.lat, lon: geoCity.geo.lon });
+  const { data, isLoading } = useGeoWeatherQuery({ lat: geoCity.geo.lat, lon: geoCity.geo.lon, lang: i18n.language });
   const temperatures = useTemperatureList(data);
   useEffect(() => {
     dispatch(

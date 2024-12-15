@@ -1,5 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { WeatherType } from "@store/slices/cities.slice.ts";
+import { WeatherType } from "@store/slices/cities/cities.slice.ts";
 
 import { RootState } from "@/store";
 import { kelvinToCelsius, kelvinToFahrenheit } from "@/utils";

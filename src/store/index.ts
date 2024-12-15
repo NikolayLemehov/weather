@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { PersistConfig, persistReducer, persistStore, PersistedState } from "redux-persist";
 import { openWeatherApi } from "@store/services/openWeatherApi.ts";
-import { citiesReducer } from "@store/slices/cities.slice.ts";
+import { citiesReducer } from "@store/slices/cities/cities.slice.ts";
 import { migrations } from "@store/migration.ts";
 
 const rootReducer = combineReducers({

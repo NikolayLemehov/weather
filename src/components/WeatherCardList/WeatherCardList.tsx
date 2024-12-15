@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectCityKeys, selectCityKeysMap } from "@store/slices/cities.selectors.ts";
+import { selectCityKeys, selectCityKeysMap } from "@store/slices/cities/cities.selectors.ts";
 
 import { WeatherCardItem } from "@/components/WeatherCardList/WeatherCardItem.tsx";
 

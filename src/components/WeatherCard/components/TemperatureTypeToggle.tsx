@@ -1,8 +1,8 @@
 import { Button as ButtonMui, ButtonProps, Divider, Stack, styled } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "@common/hooks";
-import { selectCityKeysMap } from "@store/slices/cities.selectors.ts";
-import { toggleTemperatureType } from "@store/slices/cities.slice.ts";
+import { selectCityKeysMap } from "@store/slices/cities/cities.selectors.ts";
+import { toggleTemperatureType } from "@store/slices/cities/cities.slice.ts";
 
 const Button = styled(ButtonMui)(({ theme }) => ({
   minWidth: "auto",
