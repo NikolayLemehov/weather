@@ -23,11 +23,12 @@ export const WeatherCardItem = ({ geoCity }: Props) => {
           chartList: temperatures,
           temperatureInKelvin: data?.list[0]?.main.temp ?? 0,
           feelTemperatureInKelvin: data?.list[0]?.main.feels_like ?? 0,
+          city: { name: data?.city.name ?? "", country: data?.city.country ?? "" },
         },
         cityKey: geoCity.cityKey,
       })
     );
-  }, [data?.list, dispatch, geoCity.cityKey, temperatures]);
+  }, [data?.city.country, data?.city.name, data?.list, dispatch, geoCity.cityKey, temperatures]);
 
   if (isLoading) return "Loading...";
   if (!data) return "Not enough Weather data";

@@ -48,4 +48,15 @@ export const migrations: MigrationManifest = {
 
     return s;
   },
+  6: (state) => {
+    const s = state as
+      | (NonNullable<PersistedState> & { cities: { citiesMap: Record<string, { isAddedByGeoLocation: boolean }> } })
+      | undefined;
+    if (!s) return { _persist: defaultPersistState };
+    for (const city of Object.values(s.cities.citiesMap)) {
+      city.isAddedByGeoLocation = false;
+    }
+
+    return s;
+  },
 };

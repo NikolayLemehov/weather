@@ -28,6 +28,7 @@ export const selectWeatherByCurrentType = (ciyKey: string) =>
     if (!city || !weather) return null;
 
     const celsiusWeather: WeatherType = {
+      city: weather.city,
       temperatureInKelvin: kelvinToCelsius(weather.temperatureInKelvin),
       feelTemperatureInKelvin: kelvinToCelsius(weather.feelTemperatureInKelvin),
       chartList: weather.chartList.map((item) => ({ ...item, pv: kelvinToCelsius(item.pv) })),
@@ -35,6 +36,7 @@ export const selectWeatherByCurrentType = (ciyKey: string) =>
     };
 
     const fahrenheitWeather: WeatherType = {
+      city: weather.city,
       temperatureInKelvin: kelvinToFahrenheit(weather.temperatureInKelvin),
       feelTemperatureInKelvin: kelvinToFahrenheit(weather.feelTemperatureInKelvin),
       chartList: weather.chartList.map((item) => ({ ...item, pv: kelvinToFahrenheit(item.pv) })),

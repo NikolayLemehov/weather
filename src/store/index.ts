@@ -16,7 +16,7 @@ const persistConfig: PersistConfig<RootState> = {
   key: "root",
   storage,
   whitelist: ["cities"],
-  version: 5,
+  version: 6,
   migrate: (state: PersistedState, currentVersion: number) => {
     if (!state) return Promise.resolve(undefined);
 

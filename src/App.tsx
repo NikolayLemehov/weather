@@ -4,14 +4,19 @@ import { WeatherCardList } from "./components";
 
 import { CityAdding } from "@/components/CityAdding/CityAdding.tsx";
 import { LanguageSelect } from "@/components/LanguageSelect";
+import { useGeoLocation } from "@/hooks/useGeoLocation.ts";
 
-const App = () => (
-  <Stack gap={3}>
-    <LanguageSelect />
-    <CityAdding />
+const App = () => {
+  useGeoLocation();
 
-    <WeatherCardList />
-  </Stack>
-);
+  return (
+    <Stack gap={3}>
+      <LanguageSelect />
+      <CityAdding />
+
+      <WeatherCardList />
+    </Stack>
+  );
+};
 
 export default App;
