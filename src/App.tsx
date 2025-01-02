@@ -11,8 +11,12 @@ const App = () => {
 
   return (
     <Stack gap={3}>
-      <LanguageSelect />
-      <CityAdding />
+      <Stack width={100} alignSelf="flex-end">
+        <LanguageSelect />
+      </Stack>
+      <Stack alignItems="center">
+        <CityAdding />
+      </Stack>
 
       <WeatherCardList />
     </Stack>
