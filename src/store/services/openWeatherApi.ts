@@ -22,7 +22,7 @@ const OPENWEATHER_API_KEY = envKey.VITE_WEATHER_API_KEY;
 
 export const openWeatherApi = createApi({
   reducerPath: "openWeatherApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://api.openweathermap.org/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://api.openweathermap.org/" }),
   endpoints: (builder) => ({
     searchCities: builder.query<GeoCityApiType[], string>({
       query: (cityName) => `geo/1.0/direct?q=${cityName}&limit=5&appid=${OPENWEATHER_API_KEY}`,
