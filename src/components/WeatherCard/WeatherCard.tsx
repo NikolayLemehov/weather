@@ -9,6 +9,7 @@ import {
   selectWeatherByCurrentType,
 } from "@store/slices/cities/cities.selectors.ts";
 import { useTranslation } from "react-i18next";
+import { styles } from "@common/constants.ts";
 
 import {
   CityText,
@@ -43,7 +44,15 @@ export const WeatherCard = ({ data, geoCity }: Props) => {
     : [currentWeather.city.name, currentWeather.city.country].filter(Boolean).join(", ");
 
   return (
-    <Card sx={{ position: "relative", maxWidth: 345, display: "flex", flexDirection: "column" }}>
+    <Card
+      sx={{
+        position: "relative",
+        maxWidth: 345,
+        display: "flex",
+        flexDirection: "column",
+        boxShadow: styles.shadow.main,
+      }}
+    >
       <WeatherCardContent
         colorScheme={isWarmWeather ? "warm" : "cold"}
         sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}

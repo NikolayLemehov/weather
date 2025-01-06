@@ -10,11 +10,11 @@ const App = () => {
   useGeoLocation();
 
   return (
-    <Stack gap={3}>
-      <Stack width={100} alignSelf="flex-end">
+    <Stack>
+      <Stack width={100} alignSelf="flex-end" mb="70px">
         <LanguageSelect />
       </Stack>
-      <Stack alignItems="center">
+      <Stack alignItems="center" mb="122px">
         <CityAdding />
       </Stack>
 

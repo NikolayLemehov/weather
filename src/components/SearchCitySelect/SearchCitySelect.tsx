@@ -1,11 +1,23 @@
 import { SyntheticEvent, useState } from "react";
 import { GeoCityApiType, useSearchCitiesQuery } from "@store/services/openWeatherApi";
-import { Autocomplete } from "@mui/material";
+import { Autocomplete, Popper, PopperProps } from "@mui/material";
 import { setSelectedCity } from "@store/slices/cities/cities.slice.ts";
 import { useAppDispatch } from "@common/hooks";
+import { styles } from "@common/constants.ts";
 
 import { DebounceTextField } from "./components";
 
+const CustomPopper = (props: PopperProps) => (
+  <Popper
+    {...props}
+    placement="bottom"
+    className="TestPopper"
+    sx={{
+      py: "10px",
+      "& .MuiAutocomplete-paper": { boxShadow: styles.shadow.main },
+    }}
+  />
+);
 export const SearchCitySelect = () => {
   const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState("");
@@ -38,7 +50,11 @@ export const SearchCitySelect = () => {
           placeholder="Search city"
         />
       )}
-      sx={{ minWidth: 400 }}
+      sx={{
+        minWidth: 400,
+        "* .MuiInputBase-root": { boxShadow: styles.shadow.main },
+      }}
+      PopperComponent={CustomPopper}
     />
   );
 };

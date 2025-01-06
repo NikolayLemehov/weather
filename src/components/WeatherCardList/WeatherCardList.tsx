@@ -9,7 +9,7 @@ export const WeatherCardList = () => {
   const cityKeys = useSelector(selectCityKeys);
 
   return (
-    <Stack direction="row" gap={1} alignItems="stretch">
+    <Stack direction="row" gap="30px" alignItems="stretch" flexWrap="wrap">
       {cityKeys.map((cityKey) => {
         const geoCity = citiesMap[cityKey];
         if (!geoCity) return null;

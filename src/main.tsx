@@ -1,5 +1,5 @@
 import { BrowserRouter as Router } from "react-router-dom";
-import { ThemeProvider } from "@mui/material";
+import { Container, CssBaseline, ThemeProvider } from "@mui/material";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
@@ -18,9 +18,12 @@ createRoot(document.getElementById("root")!).render(
       <PersistGate loading={null} persistor={persistor}>
         <I18nextProvider i18n={i18n}>
           <ThemeProvider theme={theme}>
-            <Router basename={import.meta.env.BASE_URL}>
-              <App />
-            </Router>
+            <CssBaseline />
+            <Container maxWidth={false} sx={{ my: "25px" }}>
+              <Router basename={import.meta.env.BASE_URL}>
+                <App />
+              </Router>
+            </Container>
           </ThemeProvider>
         </I18nextProvider>
       </PersistGate>
