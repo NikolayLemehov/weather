@@ -42,6 +42,7 @@ export const WeatherCard = ({ data, geoCity }: Props) => {
   const cityName = geoCityName
     ? geoCityName
     : [currentWeather.city.name, currentWeather.city.country].filter(Boolean).join(", ");
+  const hasDeleteBtn: boolean = !city.isAddedByGeoLocation && cityLength > 1;
 
   return (
     <Card
@@ -97,7 +98,7 @@ export const WeatherCard = ({ data, geoCity }: Props) => {
           </Stack>
         </Stack>
       </WeatherCardContent>
-      {(!city.isAddedByGeoLocation || cityLength > 1) && (
+      {hasDeleteBtn && (
         <Box sx={{ position: "absolute", top: 0, right: 0 }}>
           <DeleteCardBtn cityKey={geoCity.cityKey} />
         </Box>
