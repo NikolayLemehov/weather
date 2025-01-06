@@ -1,4 +1,4 @@
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Container, CssBaseline, ThemeProvider } from "@mui/material";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
@@ -11,6 +11,7 @@ import App from "./App.tsx";
 import { theme } from "./theme";
 
 import { store, persistor } from "@/store";
+import { NotFound } from "@/components";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -21,7 +22,10 @@ createRoot(document.getElementById("root")!).render(
             <CssBaseline />
             <Container maxWidth={false} sx={{ my: "25px" }}>
               <Router basename={import.meta.env.BASE_URL}>
-                <App />
+                <Routes>
+                  <Route path="/" element={<App />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
               </Router>
             </Container>
           </ThemeProvider>
